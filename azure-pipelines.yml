@@ -1,7 +1,8 @@
 trigger:
 - master
 
-pool: Default
+pool:
+  vmImage: Ubuntu-16.04
 
 steps:
 
