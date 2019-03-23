@@ -5,12 +5,13 @@ pool: Default
 
 steps:
 
-- script: dotnet publish MvcTest -o ../publish
-  displayName: dotnet build
+- script: dotnet publish MvcTest
+    --output $(Build.ArtifactStagingDirectory)
+  displayName: dotnet publish
 
 - task: AzureRmWebAppDeployment@4
   displayName: 'Azure App Service deploy'
   inputs:
     azureSubscription: nick-azure
     WebAppName: escalona1902test
-    packageForLinux: publish
+    packageForLinux: $(Build.ArtifactStagingDirectory)
