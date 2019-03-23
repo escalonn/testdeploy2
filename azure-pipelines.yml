@@ -1,0 +1,17 @@
+trigger:
+- master
+
+pool:
+  vmImage: Ubuntu-16.04
+
+steps:
+
+- script: dotnet publish MvcTest -o ../publish
+  displayName: dotnet build
+
+- task: AzureRmWebAppDeployment@4
+  displayName: 'Azure App Service deploy'
+  inputs:
+    azureSubscription: nick-azure
+    WebAppName: escalona1902test
+    packageForLinux: publish
