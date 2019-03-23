@@ -4,16 +4,7 @@ trigger:
 pool: Default
 
 steps:
-
-- script: dotnet restore
-  displayName: dotnet restore
-
-- script: dotnet build
-    --no-restore
-  displayName: dotnet build
-
 - script: dotnet publish MvcTest
-    --
     --output $(Build.ArtifactStagingDirectory)
   displayName: dotnet publish
 
