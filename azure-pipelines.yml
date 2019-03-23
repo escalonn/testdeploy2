@@ -5,12 +5,20 @@ pool: Default
 
 steps:
 
+- script: dotnet restore
+  displayName: dotnet restore
+
+- script: dotnet build
+    --no-restore
+  displayName: dotnet build
+
 - script: dotnet publish MvcTest
+    --no-build
     --output $(Build.ArtifactStagingDirectory)
   displayName: dotnet publish
 
 - task: AzureRmWebAppDeployment@4
-  displayName: 'Azure App Service deploy'
+  displayName: Azure App Service deploy
   inputs:
     azureSubscription: nick-azure
     WebAppName: escalona1902test
